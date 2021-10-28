@@ -8,10 +8,10 @@ public class Controller {
         int randomNum;
         Shape[] result = new Shape[10];
         for (int i = 0; i < 10; i++){
-            randomNum = (int)(Math.random() * 10);
-            if (randomNum < 4){
+            randomNum = (int)(Math.random() * 100);
+            if (randomNum < 40){
                 result[i] = new Circle(randomNum > 0 ? randomNum : 1);
-            } else if (randomNum < 8){
+            } else if (randomNum < 80){
                 result[i] = new Rectangle(randomNum > 0 ? randomNum : 1, randomNum + 1);
             } else {
                 result[i] = new Triangle(randomNum > 0 ? randomNum : 1, randomNum + 1);
