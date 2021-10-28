@@ -36,7 +36,7 @@ public class Model {
 }
 
 class Tourniquet {
-    static int succes;
+    static int success;
     static int negative;
 }
 
@@ -108,6 +108,6 @@ class SkiSeasonPass extends SkiPass{
 
     }
     SkiSeasonPass(String validity, boolean blocked){
-        super("SP season Pass", validity, blocked);
+        super("SP season pass", validity, blocked);
     }
 }

@@ -49,8 +49,24 @@ public class Controller {
                                 System.out.println(temp.toString());
                             }
                             break;
+                        case "passes":
+                            switch (sc.nextLine()){
+                                case "success":
+                                    System.out.println(Tourniquet.success);
+                                    break;
+                                case "failed":
+                                    System.out.println(Tourniquet.negative);
+                                    break;
+                                default: System.out.println("Unknown command");
+                                break;
+                            }
+                            break;
                         default: System.out.println("Unknown command");
+                        break;
                     }
+                    break;
+                case "":
+                    System.out.println("Please enter your command");
                     break;
                 default: System.out.println(Controller.decisionOfAdmission(m, request));
             }
@@ -67,7 +83,7 @@ public class Controller {
     }
 
     public static int[] transformDate (String time){
-        int[] result = new int[3];
+        int[] result = new int[2];
         result[0] = Integer.parseInt(time.substring(0,2).substring(0, 1).equals("0") ? time.substring(1,2) : time.substring(0,2));
         result[1] = Integer.parseInt(time.substring(3,5).substring(0, 1).equals("0") ? time.substring(4,5) : time.substring(3,5));
         return result;
@@ -89,12 +105,12 @@ public class Controller {
         DateTimeFormatter timeFormer = DateTimeFormatter.ofPattern("dd MM");
         LocalDateTime time = LocalDateTime.now();
         int[] formatedDate = Controller.transformDate(timeFormer.format(time));
-        if (targetValidity[1] > formatedDate[1]){
+        if (targetValidity[1] < formatedDate[1]){
             m.blockSkiPass(target, "expired");
             Tourniquet.negative++;
             return "Your pass has been blocked by reason of expired";
         } else if (targetValidity[1] == formatedDate[1]){
-            if (targetValidity[0] > formatedDate[0]){
+            if (targetValidity[0] < formatedDate[0]){
                 m.blockSkiPass(target, "expired");
                 Tourniquet.negative++;
                 return "Your pass has been blocked by reason of expired";
@@ -108,11 +124,11 @@ public class Controller {
             case "SP workDay withoutNum":
                 return proccesWithoutNum((SkiWithoutNum) target, m);
             case "SP season pass":
-                Tourniquet.succes++;
+                Tourniquet.success++;
                 return "Good luck!";
             default:
                 m.blockSkiPass(target, "unknown type");
-                return "Your pass has been blocked by reason of out of number of unknown type";
+                return "Your pass has been blocked by reason of unknown type";
         }
     }
 
@@ -123,7 +139,7 @@ public class Controller {
             return "Your pass has been blocked by reason of out of number of lifts";
         } else {
             target.numberOfLifts--;
-            Tourniquet.succes++;
+            Tourniquet.success++;
             return "Good luck!";
         }
     }
@@ -140,7 +156,7 @@ public class Controller {
             Tourniquet.negative++;
             return "Your pass has been blocked by reason of out of number of times out";
         } else {
-            Tourniquet.succes++;
+            Tourniquet.success++;
             return "Good luck!";
         }
     }
