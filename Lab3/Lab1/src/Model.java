@@ -56,6 +56,7 @@ class Rectangle extends Shape{
     int calcArea() {
         return width * heigth;
     }
+    @Override
     public void draw(){
         System.out.println("Drawing of rectangle");
     }
@@ -88,6 +89,7 @@ class Triangle extends Shape{
     int calcArea() {
         return width * heigth / 2;
     }
+    @Override
     public void draw(){
         System.out.println("Drawing of triangle");
     }
@@ -100,7 +102,7 @@ class Circle extends Shape{
     }
     Circle(int radius){
         this.radius = radius;
-        if (this.radius > 2){
+        if (this.radius > 20){
             this.shapeColor = "yellow";
         } else {
             this.shapeColor = "red";
@@ -108,12 +110,13 @@ class Circle extends Shape{
     }
     @Override
     int calcArea() {
-        return (int) (3.14 * radius * radius);
+        return (int) (Math.pow(Math.PI, this.radius));
     }
     @Override
     public String toString(){
         return "Color is " + shapeColor + " and type is circle";
     }
+    @Override
     public void draw(){
         System.out.println("Drawing of circle");
     }

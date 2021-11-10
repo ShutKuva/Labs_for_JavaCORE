@@ -9,12 +9,12 @@ public class Controller {
         Shape[] result = new Shape[10];
         for (int i = 0; i < 10; i++){
             randomNum = (int)(Math.random() * 100);
-            if (randomNum < 40){
-                result[i] = new Circle(randomNum > 0 ? randomNum : 1);
-            } else if (randomNum < 80){
-                result[i] = new Rectangle(randomNum > 0 ? randomNum : 1, randomNum + 1);
+            if (randomNum < 30){
+                result[i] = new Circle(randomNum > 0 ? randomNum/4 : 1);
+            } else if (randomNum < 65){
+                result[i] = new Rectangle(randomNum > 40 ? randomNum/3 : randomNum/2, randomNum > 20 ? randomNum/2 : randomNum/4);
             } else {
-                result[i] = new Triangle(randomNum > 0 ? randomNum : 1, randomNum + 1);
+                result[i] = new Triangle(randomNum > 80 ? randomNum/3 : randomNum/2, randomNum > 20 ? randomNum/2 : randomNum/4);
             }
         }
         return result;
